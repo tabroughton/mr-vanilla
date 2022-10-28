@@ -1,0 +1,11 @@
+{
+  "name":"mr-vanilla",
+  "description": "A vanilla monorepo as used at Aer Studios",
+  "author": "tom.broughton@aerstudios.co.uk",
+  "private": true,
+  "workspaces":["packages/*"],
+  "devDependencies":
+  {
+    "lerna":"^6.0.1"
+  }
+}
