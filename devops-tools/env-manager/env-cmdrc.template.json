@@ -1,0 +1,8 @@
+{
+  "terraform":{
+    "common": {
+      "TF_VAR_project_name": "{{project.name}}",
+      "TF_VAR_default_region": "{{aws.default_region}}"
+    }
+  }
+}

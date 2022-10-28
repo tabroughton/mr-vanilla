@@ -1,0 +1,14 @@
+{
+  "name":"@aerstudios/env-manager",
+  "description": "Exports environment json based on project variables to then be used by env-cmd",
+  "author": "tom.broughton@aerstudios.co.uk",
+  "private": true,
+  "main": "./index.ts",
+  "scripts": {
+    "tsc": "tsc --build"
+  },
+  "dependencies":
+  {
+    "mustache": "^4.2.0"
+  }
+}

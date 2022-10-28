@@ -1,0 +1,95 @@
+{
+  "packages": [
+    {
+      "id": "@data-escape-room/ws-connect-LAMBDA_FUNCTION",
+      "name": "@data-escape-room/ws-connect",
+      "type": "LAMBDA_FUNCTION",
+      "version": "286dba225c0dacc42c87643cf83835c1a93d1f5e",
+      "ref": "ws-connect-function-286dba225c0dacc42c87643cf83835c1a93d1f5e.zip"
+    },
+    {
+      "id": "@data-escape-room/ws-message-LAMBDA_FUNCTION",
+      "name": "@data-escape-room/ws-message",
+      "type": "LAMBDA_FUNCTION",
+      "version": "990064ed425c2ab6598b82e4bafafeb3da07c796",
+      "ref": "ws-message-function-990064ed425c2ab6598b82e4bafafeb3da07c796.zip"
+    },
+    {
+      "id": "@data-escape-room/ws-disconnect-LAMBDA_FUNCTION",
+      "name": "@data-escape-room/ws-disconnect",
+      "type": "LAMBDA_FUNCTION",
+      "version": "e1424df855fa75acdce41665809ab8914daa7588",
+      "ref": "ws-disconnect-function-e1424df855fa75acdce41665809ab8914daa7588.zip"
+    },
+    {
+      "id": "@data-escape-room/admin-api-LAMBDA_LAYER",
+      "name": "@data-escape-room/admin-api",
+      "type": "LAMBDA_LAYER",
+      "version": "7cce1faf3c6a6edf68e4911f0cf8c43ad68e7815",
+      "ref": "admin-api-layer-7cce1faf3c6a6edf68e4911f0cf8c43ad68e7815.zip"
+    },
+    {
+      "id": "@data-escape-room/admin-api-LAMBDA_FUNCTION",
+      "name": "@data-escape-room/admin-api",
+      "type": "LAMBDA_FUNCTION",
+      "version": "4552ef4d1e9cf089c19b37c1b6bbb515eac931dd",
+      "ref": "admin-api-function-4552ef4d1e9cf089c19b37c1b6bbb515eac931dd.zip"
+    },
+    {
+      "id": "@data-escape-room/admin-cms:build-FILE_SYSTEM",
+      "name": "@data-escape-room/admin-cms:build",
+      "type": "FILE_SYSTEM",
+      "version": "2defd01066125678a1822575ecb9b3ae857dfdbc",
+      "ref": "@data-escape-room/admin-cms/build"
+    },
+    {
+      "id": "@data-escape-room/client-game:build-FILE_SYSTEM",
+      "name": "@data-escape-room/client-game:build",
+      "type": "FILE_SYSTEM",
+      "version": "f9eece8956246fab3a819f0e51808610b2f39b33",
+      "ref": "@data-escape-room/client-game/build"
+    },
+    {
+      "id": "@data-escape-room/client-game:config-FILE_SYSTEM",
+      "name": "@data-escape-room/client-game:config",
+      "type": "FILE_SYSTEM",
+      "version": "683a44130fb32c01926fbc17b69a9d21621d22a5",
+      "ref": "@data-escape-room/client-game/config"
+    },
+    {
+      "id": "@data-escape-room/ws-message-LAMBDA_LAYER",
+      "name": "@data-escape-room/ws-message",
+      "type": "LAMBDA_LAYER",
+      "version": "4bca8dc0d14d3a6e026852f6550e0425c196ded8",
+      "ref": "ws-message-layer-4bca8dc0d14d3a6e026852f6550e0425c196ded8.zip"
+    },
+    {
+      "id": "@data-escape-room/ws-disconnect-LAMBDA_LAYER",
+      "name": "@data-escape-room/ws-disconnect",
+      "type": "LAMBDA_LAYER",
+      "version": "86098c482f49d1689cb0ec0597358c60c5f953f7",
+      "ref": "ws-disconnect-layer-86098c482f49d1689cb0ec0597358c60c5f953f7.zip"
+    },
+    {
+      "id": "@data-escape-room/ws-health-checker-LAMBDA_LAYER",
+      "name": "@data-escape-room/ws-health-checker",
+      "type": "LAMBDA_LAYER",
+      "version": "7ab59b1e6ef7c83190b6ffe31fb74033f587ec1d",
+      "ref": "ws-health-checker-layer-7ab59b1e6ef7c83190b6ffe31fb74033f587ec1d.zip"
+    },
+    {
+      "id": "@data-escape-room/ws-health-checker-LAMBDA_FUNCTION",
+      "name": "@data-escape-room/ws-health-checker",
+      "type": "LAMBDA_FUNCTION",
+      "version": "a4cb96a1d6fb45c160bced15df9cc6abd5a22e31",
+      "ref": "ws-health-checker-function-a4cb96a1d6fb45c160bced15df9cc6abd5a22e31.zip"
+    },
+    {
+      "id": "@data-escape-room/ws-connect-LAMBDA_LAYER",
+      "name": "@data-escape-room/ws-connect",
+      "type": "LAMBDA_LAYER",
+      "version": "",
+      "ref": ""
+    }
+  ]
+}

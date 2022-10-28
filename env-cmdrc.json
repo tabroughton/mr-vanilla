@@ -1,0 +1,14 @@
+{
+  "default": {
+    "PROJECT_NAME": "Data Escape Room",
+    "AWS_REGION": "eu-west-1",
+  },
+  "deployement": {
+    "LAMBDA_PACKAGES_BUCKET": "[default.PROJECT_NAME]-OPS",
+    "LAMBDA_EDGE_PACKAGES_BUCKET":" 
+    "ENV3": "!"
+  },
+  "production": {
+    "ENV1": "The Fish"
+  }
+}

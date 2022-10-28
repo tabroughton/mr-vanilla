@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "./index.ts",
+    "./src/*",
+    "./src/**/*",
+    "../../aerstudios-project.json",
+    "../env-manager/env-cmdrc.template.json"
+  ],
+  "exclude": [
+    "__tests__",
+    "dist",
+    "node_modules"
+  ]
+}
