@@ -5,10 +5,9 @@
   "private": true,
   "main": "./index.ts",
   "scripts": {
-    "tsc": "tsc --build"
+    "build": "tsc --build"
   },
-  "dependencies":
-  {
+  "dependencies": {
     "mustache": "^4.2.0"
   }
 }
