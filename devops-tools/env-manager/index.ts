@@ -8,4 +8,4 @@ export async function generateEnvVars() {
     } catch (err) {
         console.error("Error in generating env vars: ", err);
     }
-};
+}
