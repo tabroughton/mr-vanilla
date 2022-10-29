@@ -17,10 +17,14 @@
     "mustache": "^4.2.0"
   },
   "devDependencies": {
+    "@aerian/eslint-config-node": "^13.2.0",
     "@aerian/eslint-config-typescript": "^13.2.0",
+    "@babel/eslint-parser": "^7.19.1",
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.7",
     "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-json": "^3.1.0",
     "jest": "^29.2.2",
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.3",
