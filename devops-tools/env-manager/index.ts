@@ -1,5 +1,5 @@
 import * as Mustache from 'mustache';
-import * as template from './env-cmdrc.template.json'
+import * as template from './template.handlebars'
 import * as projectVars from '../../aerstudios-project.json';
 
 export async function generateEnvVars() {

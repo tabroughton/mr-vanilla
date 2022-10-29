@@ -14,7 +14,7 @@ module.exports = {
         '^.+\\.tsx?$': [
           'ts-jest',
           {
-            tsconfig: '<rootDir>/devops-tools/env-manager/tsconfig.json',
+            tsconfig: '<rootDir>/devops-tools/env-manager/tsconfig.test.json',
           },
         ],
       }

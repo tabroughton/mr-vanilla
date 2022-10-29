@@ -8,8 +8,9 @@
     "./index.ts",
     "./src/*",
     "./src/**/*",
+    "./handlebars.d.ts",
     "../../aerstudios-project.json",
-    "../env-manager/env-cmdrc.template.json"
+    "../env-manager/env-cmdrc.handlebars"
   ],
   "exclude": [
     "__tests__",

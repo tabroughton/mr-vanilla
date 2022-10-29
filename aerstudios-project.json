@@ -2,7 +2,13 @@
   "project": {
     "name": "my-test-project"
   },
-  "aws": {
-    "default_region": "eu-west-1"
+  "terraform": {
+    "version": "1.2.7",
+    "awsProviderVersion": "4.37.0",
+    "defaultAWSRegion": "eu-west-1",
+    "environments": ["int", "prod"]
+  },
+  "devel": {
+    "random": "values"
   }
 }
