@@ -10,3 +10,5 @@ export async function generateEnvVars() {
         console.error("Error in generating env vars: ", err);
     }
 }
+
+module.exports = { generateEnvVars };

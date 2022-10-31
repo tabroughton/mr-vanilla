@@ -3,8 +3,5 @@
   "environments": ["ops", "int", "stage"],
   "terraformVersion": "1.2.7",
   "terraformAWSProviderVersion": "4.37.0",
-  "defaultAWSRegion": "eu-west-1",
-  "devel": {
-    "random": "values"
-  }
+  "defaultAWSRegion": "eu-west-1"
 }

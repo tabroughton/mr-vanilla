@@ -4,8 +4,8 @@ const project = JSON.parse(readFileSync(__dirname + '/../../../aerstudios-projec
 
 describe("Generate Env Vars", () => {
     it("The project name is transferred into TF Vars", async () => {
-        const response = JSON.parse(await generateEnvVars());
+        const response = await generateEnvVars();
         console.log("Generated environment vars", response);
-        expect(response.terraformDefault.TF_VAR_project_name).toEqual(project.name);
+        expect(JSON.parse(response).terraformDefault.TF_VAR_project_name).toEqual(project.name);
     });
 });
