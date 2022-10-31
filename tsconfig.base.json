@@ -10,8 +10,10 @@
 		"sourceMap": true,
 		"strict": false,
 		"types": ["node", "jest"],
+    "moduleResolution": "node",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
+    "isolatedModules": true,
     "rootDir": "."
 	}
 }

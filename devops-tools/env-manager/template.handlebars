@@ -1,17 +1,10 @@
 {
   "terraformDefault":{
     "TF_VAR_VERSION": "{{terraform.version}}",
-    "TF_VAR_project_name": "{{project.name}}",
+    "TF_VAR_project_name": "{{name}}",
     "TF_VAR_default_region": "{{aws.defaultRegion}}",
-    "TV_VAR_lambda_deployment_bucket": "deployment-repo-{{project.name}}-lambda-pkg",
-    "TF_VAR_lambda_edge_deployment_bucket": "deployment-repo-{{project.name}}-edge-lambda-pkg",
-    "TF_VAR_ui_deployment_bucket": "deployment-repo-{{project.name}}-ui-files"
-  },
-  {{#each terraform.enviornments}}
-  "{{this}}": {
-    "TV_VAR_environment": "{{this}}",
-    "TF_PLAN_BUCKET": "{{project.name}}-terraform-plan-{{this}}",
-    "TERRAFORM_BACKEND_BUCKET": "{{project.name}}-terraform-backend-{{this}}"
+    "TV_VAR_lambda_deployment_bucket": "deployment-repo-{{name}}-lambda-pkg",
+    "TF_VAR_lambda_edge_deployment_bucket": "deployment-repo-{{name}}-edge-lambda-pkg",
+    "TF_VAR_ui_deployment_bucket": "deployment-repo-{{name}}-ui-files"
   }
-  {{/each}}
 }

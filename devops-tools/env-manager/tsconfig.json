@@ -8,7 +8,6 @@
     "./index.ts",
     "./src/*",
     "./src/**/*",
-    "./handlebars.d.ts",
     "../../aerstudios-project.json",
     "../env-manager/env-cmdrc.handlebars"
   ],

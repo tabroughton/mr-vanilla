@@ -29,5 +29,6 @@ module.exports = {
       "node"
     ],
   testPathIgnorePatterns: [ "/node_modules/", "/dist/"],
-  verbose: true
+  verbose: true,
+  testEnvironment: "node"
 }

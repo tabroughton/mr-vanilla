@@ -1,7 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "./__tests__/*"
+    "./__tests__/*",
+        "./index.ts",
+    "./src/*",
+    "./src/**/*",
+    "../../aerstudios-project.json",
+    "../env-manager/env-cmdrc.handlebars"
   ],
   "exclude": [
     "dist",
