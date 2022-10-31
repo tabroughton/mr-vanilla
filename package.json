@@ -8,13 +8,12 @@
     "devops-tools/*"
   ],
   "scripts": {
-    "build": "lerna run build --parallel",
+    "build": "lerna run build",
+    "test": "jest test",
     "test:env-manager": "jest --selectProjects @aerstudios/env-manager"
   },
   "dependencies": {
-    "@types/eslint": "^8.4.8",
-    "lerna": "^6.0.1",
-    "mustache": "^4.2.0"
+    "lerna": "^6.0.1"
   },
   "devDependencies": {
     "@aerian/eslint-config-node": "^13.2.0",
@@ -23,6 +22,7 @@
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.7",
     "eslint": "^8.26.0",
+    "@types/eslint": "^8.4.8",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-json": "^3.1.0",
     "jest": "^29.2.2",

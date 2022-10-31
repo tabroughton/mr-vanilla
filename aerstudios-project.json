@@ -1,11 +1,9 @@
 {
-  "name": "my-test-project",
-  "terraform": {
-    "version": "1.2.7",
-    "awsProviderVersion": "4.37.0",
-    "defaultAWSRegion": "eu-west-1",
-    "environments": ["int", "prod"]
-  },
+  "projectName": "my-test-project",
+  "environments": ["ops", "int", "stage"],
+  "terraformVersion": "1.2.7",
+  "terraformAWSProviderVersion": "4.37.0",
+  "defaultAWSRegion": "eu-west-1",
   "devel": {
     "random": "values"
   }

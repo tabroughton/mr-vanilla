@@ -1,4 +1,4 @@
-const envManagerPKG = require('./devops-tools/env-manager/package.json')
+const envManagerPKG = require('./devops-tools/env-manager/package.json');
 module.exports = {
   projects: [
     {
