@@ -1,13 +1,16 @@
 {
   "name":"@aerstudios/env-manager",
+  "version": "0.0.0",
   "description": "Exports environment json based on project variables to then be used by env-cmd",
   "author": "tom.broughton@aerstudios.co.uk",
   "private": true,
   "main": "./index.ts",
   "scripts": {
-    "build": "tsc --build"
+    "genEnvVars": "node writeEnvFile.js development",
+    "test": "jest"
   },
   "dependencies": {
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "@types/mustache": "^4.2.1"
   }
 }

@@ -17,7 +17,7 @@ To get going, clone this repo and run `yarn`.
 
 Root directory structure
 ```
-├── aerstudios-project.json  <- project settings edit this first
+├── aerstudios-project.json  <- project settings edit this first (START HERE)
 ├── devops-tools             <- scripts and packages to assist in devops
 ├── jest.config.js           <- jest test harness/pattern
 ├── lerna.json               <- lerna specific settings
@@ -46,6 +46,25 @@ A tyical node package layout
 │       └── tsconfig.test.json      <- extends build tsconfig, includes __tests__ dir
 ```
 
+## Environment Variables
+
+ - The environment variables are managed within the `aerstudios-project.json`.
+ - Some environment vars are created dynamically from values in this file
+ - There is an `environmentVars` object in this file where all the `development` environment vars should be added
+ - The environment vars are created by the `devops-tools/env-manager` package
+ - The `env-manager` creates a .env in the root project dir but this file shouldn't be edited directly
+ - Instead the command `yarn genEnvVars <env1> <env2>` should be run to generate the development env vars
+ -- an example might be `yarn genEnvVars development tf-int`
+ - When lerna and NX commands are run the env files should 
+
+  *Applicable envs to pass into `yarn genEnvVars` are defined in the `aerstudios-project.json`*
+  - Any main key in the `environmentVars` can be used
+  - One terraform environment can be used in the format `tf-<env>` where `<env>` is any one value out of the `environments` array.
+  
+  
+If you must you can override the global .env file in any of these ways (suggest using .env.local in the root). 
+https://nx.dev/recipes/environment-variables/define-environment-variables
+
 ## Tests
 
 1. Add a `__tests__` dir to a package
@@ -53,3 +72,5 @@ A tyical node package layout
 3. Edit `jest.config.js` in the root and copy an element in the `projects` array, updating it with the package paths
 4. Edit `package.json` in the root, add a script: `"test:<package>": "jest --selectProjects <package-name>"`
 5. Create some tests in `__tests__` and run `yarn test:<package>`
+
+

@@ -1,7 +1,13 @@
 {
   "projectName": "my-test-project",
-  "environments": ["ops", "int", "stage"],
   "terraformVersion": "1.2.7",
   "terraformAWSProviderVersion": "4.37.0",
-  "defaultAWSRegion": "eu-west-1"
+  "defaultAWSRegion": "eu-west-1",
+  "environments": ["ops", "int", "stage"],
+  "environmentVars": {
+    "development": {
+      "foo": "bar",
+      "boo": "bab"
+    }
+  }
 }
