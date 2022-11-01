@@ -1,12 +1,12 @@
 {
-  "name":"@aerstudios/env-manager",
+  "name":"@aerstudios/devops-env-manager",
   "version": "0.0.0",
   "description": "Exports environment json based on project variables to then be used by env-cmd",
   "author": "tom.broughton@aerstudios.co.uk",
   "private": true,
   "main": "./index.ts",
   "scripts": {
-    "genEnvVars": "node writeEnvFile.js development",
+    "genEnvVars": "node writeEnvFile.js",
     "test": "jest"
   },
   "dependencies": {
