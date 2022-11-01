@@ -1,0 +1,14 @@
+{
+  "name":"@aerstudios/devops-deploy",
+  "version": "0.0.0",
+  "description": "Manages packaging and deployment scripts",
+  "author": "tom.broughton@aerstudios.co.uk",
+  "private": true,
+  "scripts": {
+    "local-deploy": "./local-deploy.sh",
+    "load-vars": "cd ../../ && yarn genEnvVars"
+  },
+  "dependencies": {
+    "@aerstudios/devops-env-manager": "*"
+  }
+}
