@@ -23,7 +23,7 @@ describe("When generating development vars", () => {
 describe("When writing a dotenv file,", () => {
     it("Returns tf-int only", async () => {
         const response = getEnvVars(['tf-int']);
-        expect(response.TF_VAR_environment).toEqual("int");
+        expect(response.TF_VAR_ENVIRONMENT).toEqual("int");
     });
     it("Returns just development ", async () => {
         const response = getEnvVars(['development']);
@@ -31,7 +31,7 @@ describe("When writing a dotenv file,", () => {
     });
     it("returns both tfvars and development", async () => {
         const response = getEnvVars(['tf-int', 'development']);
-        expect(response.TF_VAR_environment).toEqual("int");
+        expect(response.TF_VAR_ENVIRONMENT).toEqual("int");
     });
     it("does not return tfvars when env does not exist ", async () => {
         const response = getEnvVars(['foobarbaz']);
