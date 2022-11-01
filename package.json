@@ -12,7 +12,7 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "test:env-manager": "jest --selectProjects @aerstudios/env-manager",
-    "local-deploy": "env-cmd ./devops-tools/local-deploy.sh"
+    "local-deploy": "lerna run local-deploy --"
   },
   "dependencies": {
     "env-cmd": "^10.1.0",

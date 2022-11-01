@@ -3,18 +3,30 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "test", "genEnvVars"]
+        "cacheableOperations": [
+          "build",
+          "test",
+          "genEnvVars"
+        ]
       }
     }
   },
   "namedInputs": {
     "default": [
-      "{workspaceRoot}/aerstudios-project.json"
+      "{workspaceRoot}/aerstudios-project.json",      
+      "{workspaceRoot}/.env"
     ]
   },
   "targetDefaults": {
     "build": {
       "dependsOn": ["genEnvVars", "^build"]
+    },
+    
+    "local-deploy":{
+      "dependsOn": [
+        { "projects": "self", "target": "load-vars", "params": "forward" }
+      ],
+      "inputs": ["default"]
     },
     "test": {
       "dependsOn": ["genEnvVars", "build"],
@@ -22,6 +34,10 @@
     },
     "genEnvVars": {
       "inputs": ["default"]
+    },
+    "genEnvVars:int": {
+      "inputs": ["default"]
     }
+    
   }
 }
