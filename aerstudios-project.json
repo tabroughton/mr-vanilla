@@ -1,13 +1,11 @@
 {
-  "projectName": "my-test-project",
-  "terraformVersion": "1.2.7",
-  "terraformAWSProviderVersion": "4.37.0",
+  "projectName": "tombroughton123123-test-project",
   "defaultAWSRegion": "eu-west-1",
   "environments": ["ops", "int", "stage"],
   "environmentVars": {
     "development": {
       "foo": "bar",
-      "boo": "bab"
+      "boo": "bash"
     }
   }
 }

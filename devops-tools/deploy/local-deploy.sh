@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 ####################################
-# 
 # local deploy will run terraform locally and deploy to aws
 ####################################
 set -euao pipefail
@@ -57,8 +56,6 @@ info "rootPath: $rootPath"
 info "Environment: $TF_VAR_ENVIRONMENT"
 info "AWS Account ID: $(aws sts get-caller-identity --query "Account" --output text)"
 info "Terraform files:  $TERRAFORM_PATH"
-info "Terraform Version: $TF_VAR_VERSION"
-info "AWS provider Version: $TF_VAR_AWS_VERSION"
 info "Backend bucket is: ${TERRAFORM_BACKEND_BUCKET}"
 
 errorOnFalse \
@@ -66,7 +63,7 @@ errorOnFalse \
     "Exiting by user"
 
 info "Starting local deployment for $TF_VAR_ENVIRONMENT"
-
+cd $TERRAFORM_PATH
 # Check for backend bucket and prompt to create it if not present
 info "Checking if the terraform backend S3 bucket exists: ${TERRAFORM_BACKEND_BUCKET}"
 bucket=$(aws s3 ls | grep "$TERRAFORM_BACKEND_BUCKET" | awk '{print $3}' || true)
@@ -78,7 +75,7 @@ if [ -z "$bucket" ]; then
 
     info "Creating the terraform backend S3 bucket"    
     aws s3 mb s3://"$TERRAFORM_BACKEND_BUCKET" \
-        --region "$TF_VAR_default_region"
+        --region "$TF_VAR_DEFAULT_REGION"
     aws s3api put-public-access-block \
         --bucket "$TERRAFORM_BACKEND_BUCKET" \
         --public-access-block-configuration 'BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true'
@@ -107,21 +104,20 @@ fi
 
 
 ###### TERRAFORM PLAN #####
-
 commitsha=$(git rev-parse HEAD)
-TF_PLAN="${commitsha}-${ENVIRONMENT}.tfplan"
+TF_PLAN="${commitsha}-${TF_VAR_ENVIRONMENT}.tfplan"
 planFound=0
 until [[ $planFound -eq 1 ]]; do
     if [[ $(checkUserConsent "terraform plan?") -eq 1 ]]; then
         info "Performing terraform plan for $TF_VAR_ENVIRONMENT"
         commitsha=$(git rev-parse HEAD)
-        TF_PLAN="${commitsha}-${ENVIRONMENT}.tfplan" 
+        TF_PLAN="${commitsha}-${TF_VAR_ENVIRONMENT}.tfplan" 
 
 
         info "Planning terraform"
         terraform plan \
                   -var-file="$TF_PROPERTIES_PATH/properties/default.tfvars" \
-                  -var-file="$TF_PROPERTIES_PATH/properties/$ENVIRONMENT.tfvars" \
+                  -var-file="$TF_PROPERTIES_PATH/properties/$TF_VAR_ENVIRONMENT.tfvars" \
                   -out="${rootPath}/${TF_PLAN}" || { err "There was a problem with the terraform plan"; exit 1; }
         
         succ "Terraform plan has completed"
@@ -131,10 +127,10 @@ until [[ $planFound -eq 1 ]]; do
             info "Using local plan $rootPath/$TF_PLAN"
             planFound=1
         else
-            s3PlanCheck=$(aws s3 ls s3://$TF_PLAN_BUCKET/$TF_PLAN | cat)
+            s3PlanCheck=$(aws s3 ls s3://$TERRAFORM_PLAN_BUCKET/$TF_PLAN | cat)
             if [ "$s3PlanCheck" != "" ]; then
-                info "Downloading Terraform Plan from $_TF_PLAN_BUCKET"
-                aws s3 cp s3://$TF_PLAN_BUCKET/$TF_PLAN $rootPath/$TF_PLAN
+                info "Downloading Terraform Plan from $_TERRAFORM_PLAN_BUCKET"
+                aws s3 cp s3://$TERRAFORM_PLAN_BUCKET/$TF_PLAN $rootPath/$TF_PLAN
                 planFound=1
             fi
         fi
@@ -146,39 +142,42 @@ until [[ $planFound -eq 1 ]]; do
     fi
 done
 
-
-if [[ $(checkUserConsent "Save terraform plan to $TF_PLAN_BUCKET?") -eq 1 ]]; then
+if [[ $(checkUserConsent "Save terraform plan to $TERRAFORM_PLAN_BUCKET?") -eq 1 ]]; then
     info "Checking if the terraform plan S3 bucket exists"
-    bucket=$(aws s3 ls | grep "$TF_PLAN_BUCKET" | awk '{print $3}' || true)
+    bucket=$(aws s3 ls | grep "$TERRAFORM_PLAN_BUCKET" | awk '{print $3}' || true)
     if [ -z "$bucket" ]; then
         warn "Unable to find the terraform backend S3 bucket"
-        if [[ $(checkUserConsent "Create $TF_PLAN_BUCKET?") -eq 1 ]]; then
+        if [[ $(checkUserConsent "Create $TERRAFORM_PLAN_BUCKET?") -eq 1 ]]; then
             info "Creating the terraform backend S3 bucket"
-            aws s3 mb s3://"$TF_PLAN_BUCKET" \
+            aws s3 mb s3://"$TERRAFORM_PLAN_BUCKET" \
                 --region "$TF_VAR_DEFAULT_REGION"
             aws s3api put-public-access-block \
-                --bucket "$TF_PLAN_BUCKET" \
+                --bucket "$TERRAFORM_PLAN_BUCKET" \
                 --public-access-block-configuration 'BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true'
             aws s3api put-bucket-encryption \
-                --bucket "$TF_PLAN_BUCKET" \
+                --bucket "$TERRAFORM_PLAN_BUCKET" \
                 --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
             aws s3api put-bucket-lifecycle \
-                --bucket "$TF_PLAN_BUCKET" \
+                --bucket "$TERRAFORM_PLAN_BUCKET" \
                 --lifecycle-configuration '{"Rules": [{"ID": "plan-housekeeping", "Prefix": "/", "Status": "Enabled", "Expiration": { "Days": 30}}]}'
+            succ "Created $TERRAFORM_PLAN_BUCKET"
+            bucket=$(aws s3 ls | grep "$TERRAFORM_PLAN_BUCKET" | awk '{print $3}' || true)
         fi
     fi
-    bucket=$(aws s3 ls | grep "$TF_PLAN_BUCKET" | awk '{print $3}' || true)
+    
     if [ -z "$bucket" ]; then
-        warn "unable to save Terraform plan as $TF_PLAN_BUCKET does not exist"
+        warn "unable to save Terraform plan as $TERRAFORM_PLAN_BUCKET does not exist"
     else
         info "Uploading Terraform Plan"
-        aws s3 cp "$rootPath"/"$TF_PLAN" s3://"$TF_PLAN_BUCKET"/"$TF_PLAN" --acl private
-        succ "$TF_PLAN had been uploaded to $TF_PLAN_BUCKET"
+        aws s3 cp "$rootPath"/"$TF_PLAN" s3://"$TERRAFORM_PLAN_BUCKET"/"$TF_PLAN" --acl private
+        succ "$TF_PLAN had been uploaded to $TERRAFORM_PLAN_BUCKET"
     fi
 fi
 
+###### TERRAFORM PLAN #####
 if [[ $(checkUserConsent "terraform APPLY?") -eq 1 ]]; then
     info "Applying terraform changes"
-    terraform apply -auto-approve "$rootPath/${TF_PLAN}" || errorOnFalse 0 "Unable to complete terraform apply" 
+    terraform apply -auto-approve "$rootPath/${TF_PLAN}" || errorOnFalse 0 "Unable to complete terraform apply"
     aws ssm put-parameter  --name "TERRAFORM_BACKEND_BUCKET"  --type "String"  --value $TERRAFORM_BACKEND_BUCKET  --overwrite
+    succ "terraform apply complete"
 fi

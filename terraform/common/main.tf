@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= ${var.VERSION}"
+  required_version = "~> 1.2.4"
 }
 
 terraform {
@@ -9,7 +9,7 @@ terraform {
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "~> ${var.AWS_VERSION}"
+      version = "~> 4.37.0"
     }
     null = {
       source = "hashicorp/null"
@@ -25,7 +25,7 @@ terraform {
 
 # The "default" instance of the provider used to provision resources
 provider "aws" {
-  region = var.default_region
+  region = var.DEFAULT_REGION
 }
 
 # The us-east-1 provider used to provision ACM cert and R53 HZ (must have alias us-east-1)
@@ -42,4 +42,3 @@ terraform {
 locals {
   published_packages = jsondecode(file("${path.module}/../properties/published-packages.json"))
 }
-

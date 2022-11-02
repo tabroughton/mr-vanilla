@@ -6,10 +6,8 @@
   ,"tf-{{.}}": {
     "TF_VAR_PROJECT_NAME": "{{projectName}}",      
     "TF_VAR_DEFAULT_REGION": "{{defaultAWSRegion}}",
-    "TF_VAR_VERSION": "{{terraformVersion}}",
-    "TF_VAR_AWS_VERSION": "{{terraformAWSProviderVersion}}",
     "TF_VAR_ENVIRONMENT": "{{.}}",
-    "TV_VAR_LAMBDA_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-lambda-pkg",
+    "TF_VAR_LAMBDA_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-lambda-pkg",
     "TF_VAR_LAMBDA_EDGE_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-edge-lambda-pkg",
     "TF_VAR_UI_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-ui-files",
     "TERRAFORM_PLAN_BUCKET": "{{projectName}}-terraform-plan-{{.}}",
