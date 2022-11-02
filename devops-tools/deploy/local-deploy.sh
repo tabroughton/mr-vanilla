@@ -30,12 +30,12 @@ if [[ -z $TF_VAR_ENVIRONMENT ]]; then
     errorOnFalse 0 "You need to specify an aws environment eg 'tf-ops', check your env vars, please see the README.md, this script should be run using NX/Lerna which will load a .env file automagically."
 fi
 
-
 if [[ -z  "$AWS_ACCESS_KEY_ID" ]] || [[ -z  "$AWS_SECRET_ACCESS_KEY" ]] | [[ -z  "$AWS_SESSION_TOKEN" ]]; then
      errorOnFalse 0 "No AWS credentials, please manually set your AWS credentials as environment vars"
 fi
 
-ssm_terraform_backend_bucket=$(echo $(aws ssm get-parameters --names "TERRAFORM_BACKEND_BUCKET") | jq --arg pn "TERRAFORM_BACKEND_BUCKET" -r '.Parameters[] | select(.Name == $pn) | .Value')
+#TODO THIS CHECK ON SSM VALUE WILL NEED MORE WORK TO BE ROBUST
+ssm_terraform_backend_bucket=$(echo $(aws ssm get-parameters --names "${TF_VAR_PORJECT_NAME}-TERRAFORM-BACKEND-BUCKET-{$TF_VAR_ENVIRONMENT}") | jq --arg pn "TERRAFORM_BACKEND_BUCKET" -r '.Parameters[] | select(.Name == $pn) | .Value')
 if (( $ssm_terraform_backend_bucket != $TERRAFORM_BACKEND_BUCKET )); then
    warn "The current Terraform backend bucket does not match the one that was previously used on this AWS account"
    warn "Only proceed if you are absolutely sure you know what you are doing"
@@ -178,6 +178,6 @@ fi
 if [[ $(checkUserConsent "terraform APPLY?") -eq 1 ]]; then
     info "Applying terraform changes"
     terraform apply -auto-approve "$rootPath/${TF_PLAN}" || errorOnFalse 0 "Unable to complete terraform apply"
-    aws ssm put-parameter  --name "TERRAFORM_BACKEND_BUCKET"  --type "String"  --value $TERRAFORM_BACKEND_BUCKET  --overwrite
+    aws ssm put-parameter  --name "${TF_VAR_PORJECT_NAME}-TERRAFORM-BACKEND-BUCKET-{$TF_VAR_ENVIRONMENT}"  --type "String"  --value $TERRAFORM_BACKEND_BUCKET  --overwrite
     succ "terraform apply complete"
 fi
