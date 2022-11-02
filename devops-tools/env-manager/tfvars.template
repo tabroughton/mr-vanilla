@@ -9,6 +9,7 @@
     "TF_VAR_ENVIRONMENT": "{{.}}",
     "TF_VAR_LAMBDA_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-lambda-pkg",
     "TF_VAR_LAMBDA_EDGE_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-edge-lambda-pkg",
+    "TF_VAR_ECR": "deployment-repo-{{projectName}}-ecr",
     "TF_VAR_UI_DEPLOYMENT_BUCKET": "deployment-repo-{{projectName}}-ui-files",
     "TERRAFORM_PLAN_BUCKET": "{{projectName}}-terraform-plan-{{.}}",
     "TERRAFORM_BACKEND_BUCKET": "{{projectName}}-terraform-backend-{{.}}"
