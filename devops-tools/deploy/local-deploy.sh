@@ -116,7 +116,6 @@ until [[ $planFound -eq 1 ]]; do
 
         info "Planning terraform"
         terraform plan \
-                  -var-file="$TF_PROPERTIES_PATH/properties/default.tfvars" \
                   -var-file="$TF_PROPERTIES_PATH/properties/$TF_VAR_ENVIRONMENT.tfvars" \
                   -out="${rootPath}/${TF_PLAN}" || { err "There was a problem with the terraform plan"; exit 1; }
         
