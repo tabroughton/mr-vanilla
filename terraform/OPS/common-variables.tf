@@ -26,5 +26,5 @@ variable "TF_VAR_LAMBDA_EDGE_DEPLOYMENT_BUCKET" {
 
 variable "TF_VAR_UI_DEPLOYMENT_BUCKET" {
   type        = string
-    description = "The location where UI files/artefacts are stored for deploying"
+  description = "The location where UI files/artefacts are stored for deploying"
 }

@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "github-actions-oidc-assume-role-policy-doc" {
 }
 
 resource "aws_iam_role" "github_actions_oidc_role" {
-  name = "${var.PROJECT_NAME}-github-actions-oidc-role-${var.ENVIRONMENT}"
+  name               = "${var.PROJECT_NAME}-github-actions-oidc-role-${var.ENVIRONMENT}"
   assume_role_policy = aws_iam_policy_document.github-actions-oidc-assume-role-policy-doc.json
 
   inline_policy {
@@ -38,13 +38,13 @@ resource "aws_iam_role" "github_actions_oidc_role" {
       Version = "2012-10-17"
       Statement = [
         {
-          "Action": [
+          "Action" : [
             "*"
           ],
-          "Resource": [
+          "Resource" : [
             "*"
           ],
-          "Effect": "Allow"
+          "Effect" : "Allow"
         }
       ]
     })
